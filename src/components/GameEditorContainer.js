@@ -6,13 +6,77 @@ export default class GameEditorContainer extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      gameObject: props.gameObject ? props.gameObject : { name: props.name },
+      gameObject: props.gameObject ? props.gameObject : {
+        name: props.name,
+        gameElements: [
+          {
+            key: 0,
+            type: 'points',
+            name: 'The Girls'
+          }
+        ]
+      },
       modalIsOpen: false,
     }
 
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+  }
+
+  addGameElement(type) {
+    let newElement = { key: Date.now(), type: type }
+    let oldGameObject = this.state.gameObject;
+    switch (type) {
+      case 'points':
+        newElement.name = 'Points Element';
+        newElement.options = [
+          {
+            label: 'Option1',
+            points: 1,
+          },
+          {
+            label: 'Option2',
+            points: 2,
+          }
+        ];
+        break;
+      case 'multiplier':
+        newElement.name = 'Multiplier Element';
+        newElement.multipliedElements = [];
+        newElement.options = [
+          {
+            label: 'Option1',
+            multiplier: 1,
+          },
+          {
+            label: 'Option2',
+            multiplier: 2,
+          }
+        ];
+        break;
+      default:
+        throw ('Invalid game element type creation request');
+    };
+    console.log('new Element=' + JSON.stringify(newElement));
+    console.log('oldgameObject=' + JSON.stringify(oldGameObject));
+    let newGameObject = oldGameObject;
+    newGameObject.gameElements.push(newElement);
+    console.log('newgameObject=' + JSON.stringify(newGameObject));
+    this.setState({
+      gameObject: newGameObject,
+    });
+    return;
+  }
+
+  updateGameElement(newElement) {
+    let oldElements = this.state.gameObject.gameElements
+
+    oldElements.forEach((e, i) => {
+      if (e.name === newElement.name) {
+        oldElements[i] = newElement;
+      }
+    });
   }
 
   openModal() {
@@ -39,12 +103,14 @@ export default class GameEditorContainer extends React.Component {
         onAfterOpen={this.afterOpenModal}
         onRequestClose={this.closeModal}
         contentLabel="Example Modal"
+        appElement={document.getElementById('root')}
       >
         <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-        <button onClick={this.closeModal}>close</button>
+        <button onClick={() => { this.addGameElement('points'); this.closeModal(); }}>Add Points Element</button>
+        <button onClick={() => { this.addGameElement('multiplier'); this.closeModal(); }}>Add Multiplier Element</button>
         <div>I am a modal</div>
-      </Modal>
-    </div>
+      </Modal >
+    </div >
     )
   }
 }

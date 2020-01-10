@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PointsEdit from './PointsEdit';
+import MultiplierEdit from './MultiplierEdit';
 
 const H1 = styled.h1`
   display: inline-block;
@@ -17,26 +19,36 @@ const HeaderBar = styled.div`
   
 `
 
-const GameEditor = ({ gameObject }) => {
+const EditorContainer = styled.li`
+  display: flex;
+  flex-direction: column;
+`
+
+
+const GameEditor = ({ gameObject, openModal }) => {
   return (<div>
     <HeaderBar>
       <H1>{gameObject.name}</H1>
-      <AddButton onClick={props.openModal}>+</AddButton>
+      <AddButton onClick={openModal}>+</AddButton>
     </HeaderBar>
-    <FlatList
-      data={gameObject.gameElements}
-      renderItem={(gameElement) => {
-        switch (gameElement.type) {
-          case 'points':
-            break;
-          case 'multiplier':
-            break;
+    <EditorContainer>
+      {gameObject.gameElements ? gameObject.gameElements.map(
+        (gameElement) => {
+          console.log('Elem type=' + gameElement.type);
+          switch (gameElement.type) {
+            case 'points':
+              return (<PointsEdit gameElement={gameElement} key={gameElement.key} />);
+            case 'multiplier':
+              return (<MultiplierEdit gameElement={gameElement} key={gameElement.key} />);
+            default:
+              return 'Flatlist Default'
+          }
         }
-      }}
-    />
+      )
+        : ''}
+    </EditorContainer>
 
-  </div>
-  )
-}
+  </div>)
+};
 
 export default GameEditor;
