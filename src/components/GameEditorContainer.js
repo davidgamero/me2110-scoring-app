@@ -22,6 +22,7 @@ export default class GameEditorContainer extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.addGameElement = this.addGameElement.bind(this);
   }
 
   addGameElement(type) {
@@ -97,19 +98,8 @@ export default class GameEditorContainer extends React.Component {
     return (<div>
       <GameEditor
         gameObject={this.state.gameObject}
-        openModal={this.openModal} />
-      <Modal
-        isOpen={this.state.modalIsOpen}
-        onAfterOpen={this.afterOpenModal}
-        onRequestClose={this.closeModal}
-        contentLabel="Example Modal"
-        appElement={document.getElementById('root')}
-      >
-        <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-        <button onClick={() => { this.addGameElement('points'); this.closeModal(); }}>Add Points Element</button>
-        <button onClick={() => { this.addGameElement('multiplier'); this.closeModal(); }}>Add Multiplier Element</button>
-        <div>I am a modal</div>
-      </Modal >
+        openModal={this.openModal}
+        addGameElement={this.addGameElement} />
     </div >
     )
   }
