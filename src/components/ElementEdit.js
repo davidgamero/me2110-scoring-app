@@ -15,6 +15,10 @@ padding: 0.5rem;
 max-width: 40rem;
 `
 
+const ElementNameInput = styled.input`
+width: 30rem;
+`
+
 const getGameReactElement = (gameElement) => {
   switch (gameElement.type) {
     case 'points':
@@ -29,6 +33,7 @@ const getGameReactElement = (gameElement) => {
 const ElementEdit = ({ gameElement }) => {
   return (
     <ElementEditCard>
+      <ElementNameInput placeholder="New GameElement Name" />
       <FieldText>{gameElement.key}</FieldText>
       {getGameReactElement(gameElement)}
     </ElementEditCard>
