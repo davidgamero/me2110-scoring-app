@@ -5,6 +5,8 @@ import PointsEdit from './PointsEdit';
 import MultiplierEdit from './MultiplierEdit';
 
 const FieldText = styled.p`
+float: left;
+margin: 0 3rem;
 `
 
 const ElementEditCard = styled.div`
@@ -12,11 +14,12 @@ border-radius: 0.5rem;
 border: 0.1rem solid palevioletred;
 margin: 0.5rem;
 padding: 0.5rem;
-max-width: 40rem;
+float: left;
 `
 
 const ElementNameInput = styled.input`
-width: 30rem;
+width: 20rem;
+float: left;
 `
 
 const getGameReactElement = (gameElement) => {
