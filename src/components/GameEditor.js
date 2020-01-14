@@ -14,7 +14,7 @@ const AddButton = styled.button`
   font-size: 1.5em;
   margin: 0.2em;
   padding: 0.25em 1em;
-  border: 2px solid palevioletred;
+  border: 0.1rem solid palevioletred;
   border-radius: 3px;
 `
 

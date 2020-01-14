@@ -9,9 +9,10 @@ const FieldText = styled.p`
 
 const ElementEditCard = styled.div`
 border-radius: 0.5rem;
-background-color: palevioletred;
+border: 0.1rem solid palevioletred;
 margin: 0.5rem;
 padding: 0.5rem;
+max-width: 40rem;
 `
 
 const getGameReactElement = (gameElement) => {
