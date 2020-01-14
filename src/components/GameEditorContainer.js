@@ -23,6 +23,7 @@ export default class GameEditorContainer extends React.Component {
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.addGameElement = this.addGameElement.bind(this);
+    this.updateGameElement = this.updateGameElement.bind(this);
   }
 
   addGameElement(type) {
@@ -99,7 +100,8 @@ export default class GameEditorContainer extends React.Component {
       <GameEditor
         gameObject={this.state.gameObject}
         openModal={this.openModal}
-        addGameElement={this.addGameElement} />
+        addGameElement={this.addGameElement}
+        updateGameElement={this.updateGameElement} />
     </div >
     )
   }

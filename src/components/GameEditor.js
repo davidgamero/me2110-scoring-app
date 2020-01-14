@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ElementEdit from './ElementEdit';
+import ElementEditContainer from './ElementEditContainer';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const H1 = styled.h1`
@@ -28,7 +28,7 @@ const ElementEditList = styled.li`
 `
 
 
-const GameEditor = ({ gameObject, addGameElement }) => {
+const GameEditor = ({ gameObject, addGameElement, updateGameElement }) => {
   return (<div>
     <HeaderBar>
       <H1>{gameObject.name}</H1>
@@ -40,7 +40,10 @@ const GameEditor = ({ gameObject, addGameElement }) => {
         (gameElement) => {
           console.log('Elem type=' + gameElement.type);
           return (
-            <ElementEdit gameElement={gameElement} key={gameElement.key} />
+            <ElementEditContainer
+              updateGameElement={updateGameElement}
+              gameElement={gameElement}
+              key={gameElement.key} />
           )
         }
       )

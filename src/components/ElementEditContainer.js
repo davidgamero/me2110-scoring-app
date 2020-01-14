@@ -2,15 +2,18 @@ import React from 'react';
 import ElementEdit from './ElementEdit';
 
 export default class ElementEditContainer extends React.Component {
-  constructor(props) {
+  constructor({ gameElement, updateGameElement }) {
     super();
     this.state = {
 
     }
   }
+
   render() {
-    <ElementEdit gameElement={this.props.gameElement} />
+    return (
+      <ElementEdit
+        gameElement={this.props.gameElement}
+        updateGameElement={this.props.updateGameElement} />
+    )
   }
 }
-
-export default ElementEditContainer;
