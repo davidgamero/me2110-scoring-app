@@ -25,11 +25,11 @@ float: right;
 cursor: pointer;
 `
 
-const OptionRow = ({ option, deleteThisOption }) => {
+const OptionRow = ({ option, deleteThisOption, updateValue, updateLabel }) => {
   return (
     <OptionRowBox>
-      <OptionLabelInput placeholder="Label" value={option.label} />
-      <OptionValueInput placeholder="Value" value={option.value} />
+      <OptionLabelInput placeholder="Label" value={option.label} onChange={updateLabel} />
+      <OptionValueInput placeholder="Value" value={option.value} onChange={updateValue} />
       <DeleteOptionButton onClick={deleteThisOption}>
         <TiDeleteOutline size="20" color="grey" />
       </DeleteOptionButton>

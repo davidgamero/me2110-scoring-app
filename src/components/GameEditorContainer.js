@@ -101,6 +101,8 @@ export default class GameEditorContainer extends React.Component {
     this.setState({
       gameObject: newGameObject,
     });
+
+    console.log(newGameObject);
   }
 
   removeGameElement(gameElement) {

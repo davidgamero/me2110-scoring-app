@@ -15,7 +15,7 @@ border-radius: 3px;
 const OptionsTitle = styled.p`
 `
 
-const OptionsEdit = ({ gameElement, addOption, deleteOption }) => {
+const OptionsEdit = ({ gameElement, addOption, deleteOption, updateOption }) => {
   let options = gameElement.options || [];
 
   return (
@@ -27,7 +27,8 @@ const OptionsEdit = ({ gameElement, addOption, deleteOption }) => {
             option={option}
             index={index}
             key={option.key}
-            deleteOption={deleteOption} />)
+            deleteOption={deleteOption}
+            updateOption={updateOption} />)
       }
       <Button variant="outline-secondary" onClick={addOption}>Add New Option</Button>
     </OptionEditBox>
