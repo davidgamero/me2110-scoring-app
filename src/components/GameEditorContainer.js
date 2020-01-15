@@ -71,12 +71,13 @@ export default class GameEditorContainer extends React.Component {
     return;
   }
 
-  updateGameElement(newElement) {
+  updateGameElement(updatedElement) {
     let oldElements = this.state.gameObject.gameElements
 
     oldElements.forEach((e, i) => {
-      if (e.name === newElement.name) {
-        oldElements[i] = newElement;
+      if (e.key === updatedElement.key) {
+        // Shallow merge to update new fields and preserve existing
+        oldElements[i] = { ...oldElements[i], ...updatedElement };
       }
     });
   }

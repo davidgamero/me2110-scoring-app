@@ -33,10 +33,12 @@ const getGameReactElement = (gameElement) => {
   }
 }
 
-const ElementEdit = ({ gameElement }) => {
+const ElementEdit = ({ gameElement, updateGameElement }) => {
   return (
     <ElementEditCard>
-      <ElementNameInput placeholder="New GameElement Name" />
+      <ElementNameInput
+        placeholder="New GameElement Name"
+        onChange={(e) => { console.log(e.target.value) }} />
       <FieldText>{gameElement.key}</FieldText>
       {getGameReactElement(gameElement)}
     </ElementEditCard>
