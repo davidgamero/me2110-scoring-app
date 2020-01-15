@@ -1,6 +1,5 @@
 import React from 'react';
 import GameEditor from './GameEditor';
-import Modal from 'react-modal';
 
 export default class GameEditorContainer extends React.Component {
   constructor(props) {
@@ -24,6 +23,7 @@ export default class GameEditorContainer extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.addGameElement = this.addGameElement.bind(this);
     this.updateGameElement = this.updateGameElement.bind(this);
+    this.removeGameElement = this.removeGameElement.bind(this);
   }
 
   addGameElement(type) {
@@ -60,11 +60,11 @@ export default class GameEditorContainer extends React.Component {
       default:
         throw ('Invalid game element type creation request');
     };
-    console.log('new Element=' + JSON.stringify(newElement));
-    console.log('oldgameObject=' + JSON.stringify(oldGameObject));
+    //console.log('new Element=' + JSON.stringify(newElement));
+    //console.log('oldgameObject=' + JSON.stringify(oldGameObject));
     let newGameObject = oldGameObject;
     newGameObject.gameElements.push(newElement);
-    console.log('newgameObject=' + JSON.stringify(newGameObject));
+    //console.log('newgameObject=' + JSON.stringify(newGameObject));
     this.setState({
       gameObject: newGameObject,
     });
@@ -72,13 +72,37 @@ export default class GameEditorContainer extends React.Component {
   }
 
   updateGameElement(updatedElement) {
-    let oldElements = this.state.gameObject.gameElements
+    let oldGameObject = this.state.gameObject;
+    let oldElements = oldGameObject.gameElements;
+    let newElements = oldElements;
 
-    oldElements.forEach((e, i) => {
+    newElements.forEach((e, i) => {
       if (e.key === updatedElement.key) {
         // Shallow merge to update new fields and preserve existing
-        oldElements[i] = { ...oldElements[i], ...updatedElement };
+        newElements[i] = { ...oldElements[i], ...updatedElement };
       }
+    });
+
+    let newGameObject = oldGameObject;
+    newGameObject.gameElements = newElements;
+
+    this.setState({
+      gameObject: newGameObject,
+    });
+  }
+
+  removeGameElement(gameElement) {
+    let oldGameObject = this.state.gameObject;
+    let oldElements = oldGameObject.gameElements;
+    let newElements = oldElements;
+
+    newElements = newElements.filter((e) => e.key !== gameElement.key);
+
+    let newGameObject = oldGameObject;
+    newGameObject.gameElements = newElements;
+
+    this.setState({
+      gameObject: newGameObject,
     });
   }
 
@@ -96,13 +120,14 @@ export default class GameEditorContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state.gameObject);
+    //console.log(this.state.gameObject);
     return (<div>
       <GameEditor
         gameObject={this.state.gameObject}
         openModal={this.openModal}
         addGameElement={this.addGameElement}
-        updateGameElement={this.updateGameElement} />
+        updateGameElement={this.updateGameElement}
+        removeGameElement={this.removeGameElement} />
     </div >
     )
   }

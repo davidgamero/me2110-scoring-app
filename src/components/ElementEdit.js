@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import PointsEdit from './PointsEdit';
 import MultiplierEdit from './MultiplierEdit';
+import { TiDeleteOutline } from 'react-icons/ti'
 
 const FieldText = styled.p`
 float: left;
@@ -22,6 +22,15 @@ width: 20rem;
 float: left;
 `
 
+const DeleteElementButton = styled.span`
+margin-right: 0.25rem;
+padding: 0.25rem;
+width: 2rem;
+height: 2rem;
+float: right;
+cursor: pointer;
+`
+
 const getGameReactElement = (gameElement) => {
   switch (gameElement.type) {
     case 'points':
@@ -33,14 +42,19 @@ const getGameReactElement = (gameElement) => {
   }
 }
 
-const ElementEdit = ({ gameElement, updateGameElement }) => {
+const ElementEdit = ({ gameElement, updateGameElementField, removeGameElement }) => {
   return (
     <ElementEditCard>
       <ElementNameInput
         placeholder="New GameElement Name"
-        onChange={(e) => { console.log(e.target.value) }} />
+        name="name"
+        onChange={updateGameElementField} />
       <FieldText>{gameElement.key}</FieldText>
+      <FieldText>{gameElement.name}</FieldText>
       {getGameReactElement(gameElement)}
+      <DeleteElementButton onClick={removeGameElement}>
+        <TiDeleteOutline size="20" color="red" />
+      </DeleteElementButton>
     </ElementEditCard>
   );
 }
