@@ -11,7 +11,19 @@ export default class GameEditorContainer extends React.Component {
           {
             key: Date.now(),
             type: 'points',
-            name: 'The Girls'
+            name: 'The Girls',
+            options: [
+              {
+                label: 'Zone 1',
+                value: '10',
+                key: 10000000,
+              },
+              {
+                label: 'Zone 2',
+                value: '25',
+                key: 20000000,
+              }
+            ]
           }
         ]
       },

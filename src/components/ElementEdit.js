@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import PointsEdit from './PointsEdit';
 import MultiplierEdit from './MultiplierEdit';
-import { TiDeleteOutline } from 'react-icons/ti'
+import { TiDeleteOutline } from 'react-icons/ti';
+import OptionsEditContainer from './OptionsEditContainer';
 
 const FieldText = styled.p`
 float: left;
@@ -42,18 +43,21 @@ const getGameReactElement = (gameElement) => {
   }
 }
 
-const ElementEdit = ({ gameElement, updateGameElementField, removeGameElement }) => {
+const ElementEdit = ({ gameElement, updateGameElementName, updateGameElementField, removeGameElement }) => {
   return (
     <ElementEditCard>
       <ElementNameInput
         placeholder="New GameElement Name"
-        name="name"
-        onChange={updateGameElementField} />
+        onChange={updateGameElementName} />
+      <OptionsEditContainer
+        gameElement={gameElement}
+        updateGameElementField={updateGameElementField}
+      />
       <FieldText>{gameElement.key}</FieldText>
       <FieldText>{gameElement.name}</FieldText>
       {getGameReactElement(gameElement)}
       <DeleteElementButton onClick={removeGameElement}>
-        <TiDeleteOutline size="20" color="red" />
+        <TiDeleteOutline size="20" color="palevioletred" />
       </DeleteElementButton>
     </ElementEditCard>
   );

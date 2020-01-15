@@ -10,14 +10,20 @@ export default class ElementEditContainer extends React.Component {
 
     this.updateGameElement = updateGameElement;
     this.removeGameElement = removeGameElement;
+    this.updateGameElementName = this.updateGameElementName.bind(this);
     this.updateGameElementField = this.updateGameElementField.bind(this);
   }
 
-  updateGameElementField(event) {
-    let field = event.target.name;
+  updateGameElementName(event) {
+    let fieldName = 'name';
     let value = event.target.value;
+
+    this.updateGameElementField(fieldName, value);
+  }
+
+  updateGameElementField(fieldName, value) {
     let updateFieldObject = {};
-    updateFieldObject[field] = value;
+    updateFieldObject[fieldName] = value;
     this.updateGameElement(
       { ...this.props.gameElement, ...updateFieldObject }
     );
@@ -31,7 +37,7 @@ export default class ElementEditContainer extends React.Component {
     return (
       <ElementEdit
         gameElement={this.props.gameElement}
-        //updateGameElement={this.props.updateGameElement}
+        updateGameElementName={this.updateGameElementName}
         updateGameElementField={this.updateGameElementField}
         removeGameElement={this.removeThisElement} />
     )
