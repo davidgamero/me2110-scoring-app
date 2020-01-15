@@ -9,7 +9,7 @@ export default class GameEditorContainer extends React.Component {
         name: props.name,
         gameElements: [
           {
-            key: 0,
+            key: Date.now(),
             type: 'points',
             name: 'The Girls'
           }
