@@ -1,0 +1,19 @@
+gameObject
+{
+  name: String,
+  gameElements: [
+    {
+      key: int,
+      type: "multipier" | "points",
+      options: [
+        label: string,
+        value: string,
+        key: int
+    }
+    ],
+  ?mulitipliedElements: [
+    key1,
+    key2
+  ]
+  ]
+}
