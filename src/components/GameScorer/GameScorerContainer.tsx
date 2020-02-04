@@ -81,8 +81,28 @@ export default class GameScorerContainer extends React.Component<GameScorerConta
     },
     match: {
       start: new Date(),
-      teams: [1, 12, 15, 19],
-      teamNames: ['team1', 'team12', 'team15', 'team19']
+      teams: [
+        {
+          number: 1,
+          seed: 1,
+          name: 'The bois'
+        },
+        {
+          number: 2,
+          seed: 3,
+          name: 'The bois dos'
+        },
+        {
+          number: 3,
+          seed: 5,
+          name: 'The gurls'
+        },
+        {
+          number: 4,
+          seed: 11,
+          name: 'The theys'
+        }
+      ]
     }
   }
 
